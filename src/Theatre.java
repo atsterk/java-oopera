@@ -12,7 +12,7 @@ public class Theatre {
         Person musicAuthor = new Person("Папа", "Карло", Person.Gender.FEMALE);
         Person choreographer = new Person("Йцуке", "Фывап", Person.Gender.MALE);
 
-        Show show = new Show("Ромео и Джульетта", 120, director1, new ArrayList<Actor>());
+        Show show = new Show("Ромео и Джульетта", 120, director1, new ArrayList<>());
         Opera opera = new Opera("Богема", 180, director1, new ArrayList<>(),
                 musicAuthor, "12345", 2);
         Ballet ballet = new Ballet("Лебединое озеро", 240, director2, new ArrayList<>(),
