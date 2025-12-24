@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Show {
-    public String title;
-    public int duration;
-    public Director director;
-    public ArrayList<Actor> listOfActors;
+    private String title;
+    private int duration;
+    private Director director;
+    private ArrayList<Actor> listOfActors;
 
     Show(String title, int duration, Director director, ArrayList<Actor> listOfActors) {
         this.title = title;
@@ -19,13 +19,13 @@ public class Show {
 
     public void printAllActors() {
         System.out.println("Список актеров, участвующих в спектакле: ");
-        for(Actor actor: listOfActors) {
+        for (Actor actor : listOfActors) {
             System.out.println(actor);
         }
     }
 
     public void addActor(Actor newActor) {
-        if(listOfActors.contains(newActor)) {
+        if (listOfActors.contains(newActor)) {
             System.out.println("Такой актер уже участвует в данном спектакле!");
         } else {
             listOfActors.add(newActor);
@@ -33,13 +33,46 @@ public class Show {
         }
     }
 
-    public void replaceActor(Actor newActor, String surname) {
+    //Реализация, при которой заменяется первое найденное вхождение
+    /* public void replaceActor(Actor newActor, String surname) {
         for (int i = 0; i < listOfActors.size(); i++) {
-            if (listOfActors.get(i).surname.equals(surname)) {
+            if (listOfActors.get(i).getSurname().equals(surname)) {
                 listOfActors.set(i, newActor);
                 return;
             }
         }
         System.out.println("Актера с такой фамилией нет в списке!");
+    }*/
+
+    //Реализация с заменой всех актеров с данной фамилией
+    public void replaceActor(Actor newActor, String surname) {
+        int numberOfRemovedActors = 0;
+        for (int i = listOfActors.size() - 1; i > 0; i--) {
+            if (listOfActors.get(i).getSurname().equals(surname)) {
+                listOfActors.remove(i);
+                numberOfRemovedActors += 1;
+            }
+        }
+        if (numberOfRemovedActors != 0) {
+            listOfActors.add(newActor);
+        } else {
+            System.out.println("Актера с такой фамилией нет в списке!");
+        }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public ArrayList<Actor> getListOfActors() {
+        return listOfActors;
     }
 }
